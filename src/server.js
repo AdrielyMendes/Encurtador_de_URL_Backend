@@ -10,3 +10,18 @@ server.listen({port}, (error) => {
     }
     console.log("Servidor rodando na porta", port);
 })
+
+// import Fastify from 'fastify'
+// import dotenv from 'dotenv'
+// import { linksRoutes } from './routes/linksRoutes.js'
+
+// dotenv.config()
+
+// const fastify = Fastify({ logger: true })
+
+// fastify.register(linksRoutes)
+
+// fastify.listen({ port: 3333 }, (err, address) => {
+//   if (err) throw err
+//   console.log(` Servidor rodando em ${address}`)
+// })
