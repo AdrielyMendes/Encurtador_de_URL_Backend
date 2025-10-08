@@ -1,27 +1,17 @@
 import fastify from "fastify";
+import { linksRoutes } from "./modules/links/linksRoutes.js";
 
-const server = fastify({logger: true});
+const server = fastify({ logger: true });
 const port = 3000;
 
-server.listen({port}, (error) => {
-    if (error){
+fastify.register(linksRoutes)
+
+server.listen({ port }, (error) => {
+    if (error) {
         console.error("Erro ao iniciar o servidor:", error);
         process.exit(1);
     }
     console.log("Servidor rodando na porta", port);
 })
 
-// import Fastify from 'fastify'
-// import dotenv from 'dotenv'
-// import { linksRoutes } from './routes/linksRoutes.js'
 
-// dotenv.config()
-
-// const fastify = Fastify({ logger: true })
-
-// fastify.register(linksRoutes)
-
-// fastify.listen({ port: 3333 }, (err, address) => {
-//   if (err) throw err
-//   console.log(` Servidor rodando em ${address}`)
-// })
