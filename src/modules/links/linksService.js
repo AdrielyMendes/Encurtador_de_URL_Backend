@@ -1,6 +1,6 @@
-import db from '../infra/db/database.js';
-import { Links } from '../infra/db/schema.js';
-import { generateCode } from '../utils/generateCode.js';
+import  db  from '../../infra/database.js';
+import { Links } from '../../infra/db/schema.js';
+import { generateCode } from '../../utils/generateCode.js';
 
 export async function createLinkService({ legenda, urlOriginal }) {
 

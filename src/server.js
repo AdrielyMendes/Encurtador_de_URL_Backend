@@ -4,7 +4,7 @@ import { linksRoutes } from "./modules/links/linksRoutes.js";
 const server = fastify({ logger: true });
 const port = 3000;
 
-fastify.register(linksRoutes)
+server.register(linksRoutes)
 
 server.listen({ port }, (error) => {
     if (error) {
