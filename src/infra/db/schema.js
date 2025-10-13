@@ -1,9 +1,9 @@
-import { pgTable, uuid, text } from "drizzle-orm/pg-core";
+import { pgTable, uuid, text, integer } from "drizzle-orm/pg-core";
 
 export const Links = pgTable('links', {
-  id: uuid('id').primaryKey(),
-  legenda: text('legenda'),
-  codigo: text('codigo'),
-  original_url: text('original_url'),
-  contagem_cliques: text('contagem_cliques').default('0')
+  id: uuid('id').defaultRandom().primaryKey(),
+  legenda: text('legenda').notNull(),
+  codigo: text('codigo').notNull(),
+  original_url: text('original_url').notNull(),
+  contagem_cliques: integer('contagem_cliques').default(0),
 });
