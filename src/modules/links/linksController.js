@@ -1,4 +1,4 @@
-import { createLinkService } from './linksService.js'
+import { createLinkService, readLinkByCodeService, readLinkService } from './linksService.js'
 
 export async function createLinkController(req, reply) {
   try {
@@ -15,3 +15,25 @@ export async function createLinkController(req, reply) {
     return reply.code(400).send({ error: error.message })
   }
 }
+
+export async function readLinksController(req, reply) {
+  try {
+    const links = await readLinkService();
+    console.log(links);
+    return reply.code(200).send(links);
+  } catch (error) {
+    return reply.code(500).send({ error: 'Erro ao buscar os links' });
+  }
+}
+
+export async function readLinkByCodeController(req, reply) {
+  try {
+    const { codigo } = req.params;
+    const link = await readLinkByCodeService(codigo);
+    return reply.code(200).send(link);
+  } catch (error) {
+    return reply.code(500).send({ error: error.message });
+  }
+}
+
+

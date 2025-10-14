@@ -26,3 +26,13 @@ export async function createLinkService({ legenda, urlOriginal, url }) {
 
   return novoLink;
 }
+
+export async function readLinkService() {
+  const links = await db.select().from(Links);
+  return links;
+}
+
+export async function readLinkByCodeService(codigo) {
+  const link = await db.select().from(Links).where(Links.codigo.eq(codigo));
+  return link;
+}

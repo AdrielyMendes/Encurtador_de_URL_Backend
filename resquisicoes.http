@@ -1,27 +1,16 @@
-### Variáveis
 @url=http://localhost:3000
 
-### Criar um novo link
-POST http://localhost:3000/links
+### Cria um novo link
+POST {{url}}/links
 Content-Type: application/json
 
 {
-  "legenda": "Google",
+  "legenda": "Pesquisa Google",
   "urlOriginal": "https://www.google.com"
-}
-
-### Criar um novo link com campo "url"
-
-POST  http://localhost:3000/links
-Content-Type: application/json
-
-{
-  "legenda": "Yahoo",
-  "url": "https://www.yahoo.com"
 }
 
 ### Buscar todos os links (se existir esse endpoint)
 GET {{url}}/links
 
 ### Buscar um link específico pelo código (exemplo)
-GET {{url}}/links/z2482j
+GET {{url}}/links/34VoZW

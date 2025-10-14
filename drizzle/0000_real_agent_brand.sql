@@ -3,5 +3,5 @@ CREATE TABLE "links" (
 	"legenda" text,
 	"codigo" text,
 	"original_url" text,
-	"contagem_cliques" text DEFAULT '0'
+	"contagem_cliques" integer DEFAULT '0'
 );
