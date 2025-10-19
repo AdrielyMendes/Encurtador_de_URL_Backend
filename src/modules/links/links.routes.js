@@ -8,5 +8,3 @@ export async function linksRoutes(fastify) {
   fastify.delete('/links/:id', deleteLinkController);
   fastify.get('/:codigo', redirecaoLinkController);
 }
-
-
