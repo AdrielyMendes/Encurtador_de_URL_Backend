@@ -5,12 +5,24 @@ POST {{url}}/links
 Content-Type: application/json
 
 {
-  "legenda": "Pesquisa Google",
-  "urlOriginal": "https://www.google.com"
+  "legenda": "Yahoo",
+  "urlOriginal": "https://br.search.yahoo.com/?fr2=p:fprd,mkt:br"
 }
 
-### Buscar todos os links (se existir esse endpoint)
+### Busca todos os links
 GET {{url}}/links
 
-### Buscar um link específico pelo código (exemplo)
-GET {{url}}/links/34VoZW
+### Busca um link específico pelo código 
+GET {{url}}/links/zTbNJw
+
+### Atualiza um link específico pelo id
+PUT {{url}}/links/501b5cc6-25de-434d-827d-5d0503524134
+Content-Type: application/json
+
+{
+  "legenda": "Google",
+  "urlOriginal": "https://www.yahoo.com"
+}
+
+### Deleta um link específico pelo id
+DELETE {{url}}/links/0930c74c-b7f9-44eb-84d6-6f82a3811b24

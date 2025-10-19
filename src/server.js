@@ -1,5 +1,5 @@
-import fastify from "fastify";
-import { linksRoutes } from "./modules/links/linksRoutes.js";
+import fastify from "fastify";;
+import {linksRoutes} from "./modules/links/links.routes.js";
 
 const server = fastify({ logger: true });
 const port = 3000;
