@@ -67,7 +67,7 @@ export async function deleteLinkRepository(id) {
 }
 
 export async function incrementoClicksRepository(codigo) {
-  const [linkAtualizado] = await db.update(Links).set({contagem_cliques: db.raw('contagem_cliques + 1')}).where(eq(Links.codigo, codigo)).returning();
+  const [linkAtualizado] = await db.update(Links).set({contagem_cliques: sql`contagem_cliques + 1`}).where(eq(Links.codigo, codigo)).returning();
 
   return linkAtualizado;
 }
