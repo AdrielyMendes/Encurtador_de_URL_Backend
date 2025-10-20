@@ -10,5 +10,3 @@ export async function linksRoutes(fastify) {
   fastify.patch('/links/:id', updateLinkController);
 
 }
-
-

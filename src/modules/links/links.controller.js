@@ -29,7 +29,13 @@ export async function readLinkByCodeController(req, reply) {
   try {
     const { codigo } = req.params;
     const link = await readLinkByCodeService(codigo);
-    return reply.code(200).send(link);
+
+    if (!link || link.length === 0) {
+      return reply.code(404).send({ error: "Link não encontrado" });
+    }
+
+    // Retorna o primeiro item caso seja um array
+    return reply.code(200).send(link[0]);
   } catch (error) {
     return reply.code(500).send({ error: error.message });
   }
@@ -72,9 +78,9 @@ export async function redirecaoLinkController(req, reply) {
     const urlOriginal = await redirecaoLinkService(codigo);
     if (!urlOriginal) {
       return reply.code(404).send({ error: 'Link não encontrado' });
-    } return reply.redirect(302, urlOriginal);
+    } 
+    return reply.redirect(302, urlOriginal);
   } catch (error) {
     return reply.code(500).send({ error: 'Erro ao redirecionar o link' });
   }
 }
-
