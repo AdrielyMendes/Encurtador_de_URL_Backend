@@ -7,6 +7,6 @@ export async function linksRoutes(fastify) {
   fastify.put('/links/:id', updateLinkController);
   fastify.delete('/links/:id', deleteLinkController);
   fastify.get('/:codigo', redirecaoLinkController);
-  fastify.patch('/links/:id', updateLinkController);
+
 
 }
