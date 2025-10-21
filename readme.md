@@ -3,7 +3,7 @@
 
 Este projeto é um **encurtador de links** (similar ao bit.ly) construído com **Node.js** e **Fastify** no back-end, usando **PostgreSQL** como banco de dados e **Drizzle ORM** para mapeamento. O sistema permite criar links encurtados, buscar / editar / excluir registros, redirecionar usuários ao acessar o código curto e contabilizar acessos (cliques).
 
-Este documento explica minuciosamente cada arquivo, o fluxo de requisições, como rodar localmente, deploy, testes e também contém perguntas/resumos estilo prova para ajudar na revisão.
+Este documento explica minuciosamente cada arquivo, o fluxo de requisições, como rodar localmente, deploy.
 
 ## 2. Objetivos de aprendizagem
 
@@ -18,20 +18,20 @@ Este documento explica minuciosamente cada arquivo, o fluxo de requisições, co
 src/
 ├── infra/
 │   ├── db/
-│   │   ├── database.js      # conexão com o PostgreSQL via Drizzle
+│   │       
 │   │   └── schema.js        # definição da tabela Links (Drizzle)
-│   └── ...
+│   └── database.js          # conexão com o PostgreSQL via Drizzle
 ├── modules/
 │   └── links/
-│       ├── links.routes.js      # registra rotas Fastify
-│       ├── links.controller.js  # recebe requisições e responde
-│       ├── links.service.js     # regras de negócio / validações
+│       ├── links.controller.js  # recebe requisições e responde 
 │       ├── links.repository.js  # queries com Drizzle
+│       ├── links.routes.js      # registra rotas Fastify    
+│       ├── links.service.js     # regras de negócio / validações 
 │
 ├── utils/
 │   └── generateCode.js          # gera códigos curtos
-├── server.js                    # boot do servidor Fastify
-└── package.json
+└── server.js                    # boot do servidor Fastify
+ 
 
 ```
 ## 4. Arquivos e explicação detalhada
