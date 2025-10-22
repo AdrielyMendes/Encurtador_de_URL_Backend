@@ -1,9 +1,9 @@
-import { createLinkService, deleteLinkService, readLinkByCodeService, readLinksService, redirecaoLinkService, updateLinkService } from "./links.service.js"
+import { createLinkService, deleteLinkService, readLinksService, redirecaoLinkService, updateLinkService } from "./links.service.js"
 
 export async function createLinkController(req, reply) {
   try {
     const { legenda, url, urlOriginal } = req.body
-    const endereco = urlOriginal || url 
+    const endereco = urlOriginal || url
 
     if (!legenda || !endereco) {
       return reply.code(400).send({ error: 'Legenda e URL são obrigatórias' })
@@ -25,22 +25,6 @@ export async function readLinksController(req, reply) {
   }
 }
 
-export async function readLinkByCodeController(req, reply) {
-  try {
-    const { codigo } = req.params;
-    const link = await readLinkByCodeService(codigo);
-
-    if (!link || link.length === 0) {
-      return reply.code(404).send({ error: "Link não encontrado" });
-    }
-
-    // Retorna o primeiro item caso seja um array
-    return reply.code(200).send(link[0]);
-  } catch (error) {
-    return reply.code(500).send({ error: error.message });
-  }
-}
-
 export async function updateLinkController(req, reply) {
   try {
     const { id } = req.params;
@@ -55,20 +39,35 @@ export async function updateLinkController(req, reply) {
   }
   catch (error) {
     return reply.code(500).send({ error: 'Erro ao atualizar o link' });
-  }  
+  }
 }
 
 export async function deleteLinkController(req, reply) {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const linkDeletado = await deleteLinkService(id);
 
     if (!linkDeletado) {
       return reply.code(404).send({ error: 'Link não encontrado' });
-    } 
-    return reply.code(200).send({message: 'Link deletado com sucesso!', id});
+    }
+    return reply.code(200).send({ message: 'Link deletado com sucesso!', id });
   } catch (error) {
     return reply.code(500).send({ error: 'Erro ao deletar o link' });
+  }
+}
+
+export async function incrementoClickController(req, reply) {
+  try {
+    const { codigo } = req.params;
+    const linkAtualizado = await incrementoClicksRepository(codigo);
+
+    if (!linkAtualizado) {
+      return reply.code(404).send({ error: 'Link não encontrado' });
+    }
+
+    return reply.code(200).send(linkAtualizado);
+  } catch (error) {
+    return reply.code(500).send({ error: error.message });
   }
 }
 
@@ -78,8 +77,16 @@ export async function redirecaoLinkController(req, reply) {
     const urlOriginal = await redirecaoLinkService(codigo);
     if (!urlOriginal) {
       return reply.code(404).send({ error: 'Link não encontrado' });
-    } 
-    return reply.redirect(302, urlOriginal);
+    }
+
+    let destino = urlOriginal;
+    if (!/^https?:\/\//i.test(destino)) {
+      destino = "https://" + destino;
+    }
+
+    // console.log("Redirecionando para:", destino);
+    return reply.redirect(destino);
+
   } catch (error) {
     return reply.code(500).send({ error: 'Erro ao redirecionar o link' });
   }

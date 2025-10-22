@@ -2,7 +2,7 @@ import { generateCode } from '../../utils/generateCode.js';
 import db from '../../infra/database.js';
 import { Links } from '../../infra/db/schema.js';
 import { randomUUID } from 'crypto';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 
 export async function createLinkRepository({ legenda, urlOriginal, url }) {
@@ -39,16 +39,6 @@ export async function readLinkRepository() {
     console.error('Erro no readLinkRepository:', error);
     throw error;
   }
-}
-
-export async function readLinkByCodeRepository(codigo) {
-  try{
-    const link = await db.select().from(Links).where(eq(Links.codigo, codigo));
-    return link; 
-  } catch (error) {
-    console.error('Erro no readLinkByCodeService:', error);
-    throw error;
-  } 
 }
 
 export async function updateLinkRepository(id, novosDados) {
