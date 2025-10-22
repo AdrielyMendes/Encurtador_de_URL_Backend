@@ -1,0 +1,1 @@
+ALTER TABLE "links" ADD COLUMN "created_at" "cal::local_datetime" DEFAULT now();
