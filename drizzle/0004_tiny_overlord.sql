@@ -1,1 +1,1 @@
-ALTER TABLE "links" ADD COLUMN "created_at" "cal::local_datetime" DEFAULT now();
+ALTER TABLE "links" ADD COLUMN "created_at" timestamp DEFAULT CURRENT_TIMESTAMP;
